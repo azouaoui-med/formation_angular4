@@ -1,0 +1,25 @@
+
+<div class="row form-group item">
+  <div class="col-md-2"><strong>Id : </strong>{{item.id}}</div>
+  <div class="col-md-2"><strong>Name : </strong>{{item.name}}</div>
+  <div class="col-md-2"><strong>Réference : </strong>{{item.reference}}</div>
+  <div class="col-md-2"><strong>State : </strong>
+    <!-- <span class="badge badge-primary" *ngIf="state.ALIVRER === item.state">
+       {{ item.state }}
+    </span>
+    <span class="badge badge-info" *ngIf="state.ENCOURS === item.state">
+      {{ item.state }}
+   </span>
+
+   <span class="badge badge-success" *ngIf="state.LIVREE === item.state">
+      {{ item.state }}
+   </span> -->
+   <span [appState]="item.state">{{item.state}}</span>
+  </div>
+  <div class="col-md-4">
+    <div>
+      <button *ngIf="item.state === state.ALIVRER" (click)="changeState(state.ENCOURS)" href="#" class="btn btn-outline-warning">{{state.ENCOURS}}</button>
+      <button *ngIf="item.state === state.ENCOURS" (click)="changeState(state.LIVREE)" href="#" class="btn btn-outline-success  ">{{state.LIVREE}}</button>
+    </div>
+  </div>
+</div>

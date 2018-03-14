@@ -1,0 +1,10 @@
+<div class="form-group">
+  <h4>Liste des items</h4>
+</div>
+
+<ng-container *ngFor="let c of collection">
+
+  <div class="list-group">
+    <app-item [item]="c"></app-item>
+  </div>
+</ng-container>
