@@ -1,10 +1,11 @@
-
-<form class="form" novalidate (ngSubmit)="process()"  [formGroup]="form">
+<form class="form" novalidate (ngSubmit)="process()" [formGroup]="form">
   <div class="form-group">
     <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Name*" formControlName="name">
+    <div class="text-danger" *ngIf="hasError('name')">Champs invalid</div>
   </div>
   <div class="form-group">
     <input type="text" class="form-control" placeholder="Réference exp:1234" formControlName="reference">
+    <div class="text-danger" *ngIf="hasError('reference')">Champs invalid</div>
   </div>
   <div class="form-group">
     <select class="form-control" formControlName="state">
@@ -12,6 +13,6 @@
     </select>
   </div>
   <div class="form-group">
-    <button type="submit" class="btn btn-primary">Valider</button>
+    <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Valider</button>
   </div>
 </form>

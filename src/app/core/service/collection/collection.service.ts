@@ -15,5 +15,8 @@ export class CollectionService {
   set collection (collection: Item[]) {
     this._collection = collection;
   }
+  add = (obj: Item): void => {
+    this._collection.push(obj);
+  }
 
 }

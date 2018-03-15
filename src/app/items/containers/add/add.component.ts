@@ -1,4 +1,7 @@
+import { CollectionService } from './../../../core/service/collection/collection.service';
 import { Component, OnInit } from '@angular/core';
+import { Item } from '../../../shared/models/item.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddComponent implements OnInit {
 
-  constructor() { }
+  constructor(private collectionService: CollectionService, private router: Router) { }
 
   ngOnInit() {
   }
+  addItem = (obj: Item): void => {
+    this.collectionService.add(obj);
+    this.router.navigate(['/items/list']);
+  }
 
+  // look for subject to store objects and use them in different componenets
 }

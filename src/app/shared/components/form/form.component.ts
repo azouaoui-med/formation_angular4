@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { State } from '../../enums/state.enum';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Item } from '../../models/item.model';
 
 @Component({
   selector: 'app-form',
@@ -10,6 +12,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class FormComponent implements OnInit {
   form: FormGroup;
   stateLibelles = Object.values(State);
+  @Output() newItem: EventEmitter<Item> = new EventEmitter();
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
@@ -18,12 +21,24 @@ export class FormComponent implements OnInit {
 
   createForm() {
     this.form = this.fb.group({
-      name: '',
-      reference: '',
+      name: [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(5)])
+      ],
+      reference:  [
+        '',
+        Validators.compose([Validators.required, Validators.minLength(4)])
+      ],
       state: State.ALIVRER
     });
   }
   process = (): void => {
+    this.newItem.emit(this.form.value);
+    this.form.reset();
+    this.form.get('state').setValue(State.ALIVRER);
+  }
+  hasError = (val: string) => {
+    return (this.form.get(val).invalid && this.form.get(val).touched);
   }
 
 }
