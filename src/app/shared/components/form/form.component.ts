@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { State } from '../../enums/state.enum';
@@ -13,10 +13,12 @@ export class FormComponent implements OnInit {
   form: FormGroup;
   stateLibelles = Object.values(State);
   @Output() newItem: EventEmitter<Item> = new EventEmitter();
+  @Input() id;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
     this.createForm();
+    console.log(this.id);
   }
 
   createForm() {

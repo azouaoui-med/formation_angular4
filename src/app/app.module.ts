@@ -12,7 +12,10 @@ import { Router } from '@angular/router';
 import { AppComponent } from './app.component';
 
 import { CollectionService } from './core/service/collection/collection.service';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { environment } from '../environments/environment';
     HomeModule,
     PageNotFoundModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
+
 ],
   providers: [CollectionService],
   bootstrap: [AppComponent]

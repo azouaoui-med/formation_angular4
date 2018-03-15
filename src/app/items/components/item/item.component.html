@@ -18,8 +18,9 @@
   </div>
   <div class="col-md-4">
     <div>
-      <button *ngIf="item.state === state.ALIVRER" (click)="changeState(state.ENCOURS)" href="#" class="btn btn-outline-warning">{{state.ENCOURS}}</button>
-      <button *ngIf="item.state === state.ENCOURS" (click)="changeState(state.LIVREE)" href="#" class="btn btn-outline-success  ">{{state.LIVREE}}</button>
+      <button *ngIf="item.state === state.ALIVRER" (click)="changeState(state.ENCOURS)"  class="btn btn-outline-warning">{{state.ENCOURS}}</button>
+      <button *ngIf="item.state === state.ENCOURS" (click)="changeState(state.LIVREE)"  class="btn btn-outline-success  ">{{state.LIVREE}}</button>
+      <button (click)='edit(item.id)' class="btn btn-outline-info">Editer</button>
     </div>
   </div>
 </div>
